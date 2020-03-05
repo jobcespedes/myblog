@@ -1,0 +1,15 @@
+---
+install: "./test/install.sh"
+
+script:
+  - hugo ${HUGO_OPTS:-}
+
+deploy:
+  provider: pages
+  repo: jobcespedes/jobcespedes.github.io
+  local_dir: public
+  target_branch: master
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  on:
+    branch: master

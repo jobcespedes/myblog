@@ -1,0 +1,30 @@
+theme: hugo-vitae
+baseURL: 'https://jobcespedes.github.io/'
+languageCode: en-us
+defaultContentLanguage: en-us
+copyright: © 2020 Job Céspedes Ortiz
+title: My Dev Blog
+paginate: 5
+pygmentsstyle: colorful
+pygmentscodefences: true
+pygmentscodefencesguesssyntax: true
+footnoteReturnLinkContents: ↩
+# enablegitinfo: true
+enableemoji: true
+permalinks:
+  posts: /:year/:month/:slug/
+taxonomies:
+  tag: tags
+  series: series
+params:
+  AuthorName: Job Céspedes Ortiz
+  GitHubUser: jobcespedes
+  SidebarRecentLimit: 5
+  subtitle: ''
+  social:
+    - name: Linkedin
+      icon: fab fa-linkedin
+      url: 'https://www.linkedin.com/in/job-céspedes-ortiz-277aa471'
+    - name: Github
+      icon: fab fa-github
+      url: 'https://github.com/jobcespedes'
