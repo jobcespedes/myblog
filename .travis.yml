@@ -1,7 +1,11 @@
 ---
-install: "./test/install.sh"
+dist: bionic
+addons:
+  snaps:
+    - hugo
 
 script:
+  - hugo version
   - hugo ${HUGO_OPTS:-}
 
 deploy:
