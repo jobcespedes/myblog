@@ -3,7 +3,7 @@ title: "alias docker=podman"
 slug: "alias-docker-podman"
 author: Job Céspedes Ortiz
 date: 2020-03-02T10:48:50-06:00
-subtitle: "is all it requires?"
+subtitle: "all it requires?"
 image: ""
 tags:
   - containers
