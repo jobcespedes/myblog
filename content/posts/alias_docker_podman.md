@@ -26,7 +26,7 @@ tags:
 # audio: []
 draft: true
 ---
-I have heard about Podman more and more often now. Whether it is that I have come closer to its developing environment or that it has come to mine, I'm not sure. It's both, I guess. I use Ansible a lot for automating baremetal and virtual infrastructure: for its definition, deployment, configuration, operation, among other things. In the recent years, I have being using more and more containers, particularly in the developing stages. And I really like open source, most of its concepts, and many initiatives around it. So, I have being wondering if I should be using mainly podman for containers already. There is, however, this one recurrent question in my head:
+I have heard about [podman](https://podman.io/) (Pod Manager tool) more and more often now. Whether it is that I have come closer to its developing environment or that it has come to mine, I'm not sure. It's both, I guess. I use Ansible a lot for automating baremetal and virtual infrastructure: for its definition, deployment, configuration, operation, among other things. In the recent years, I have being using more and more containers, particularly in the developing stages. And I really like open source, most of its concepts, and many initiatives around it. So, I have being wondering if I should be using mainly podman for containers already. There is, however, this one recurrent question in my head:
 
 > How much work will adapting those docker projects take?
 
@@ -86,17 +86,9 @@ podman unshare mount | grep ${unionfs}
 
 ## More than `alias docker=podman`
 In retrospective, replacing docker with podman may require more than `alias docker=podman`. It required me to:
-* [x] read the documentation
-* [x] take advantage of the community
-* [x] start to really grasp concepts like _rootless_ and _user namespace_
-* [x] have fun learning new things
+* **check [documentation](https://github.com/containers/libpod) available**
+* **turn to [community recourses](https://github.com/containers/libpod/issues)**
+* **start to really grasp concepts like [_rootless_ and _user namespaces_](https://opensource.com/article/19/2/how-does-rootless-podman-work)**
+* **have fun learning new things**
 
-To be fair, in many cases the alias could be all you need. But in this particular one, those steps helped replacing docker with podman and extending [demo-multienv](https://github.com/jobcespedes/demo-multienv). Now I could run it in either one of three modes using Ansible :smile::
-
-| Mode &nbsp; &nbsp; | Container &nbsp; &nbsp; | Become &nbsp; &nbsp; | Root &nbsp; &nbsp; |
-| :-- | :-: | :-: | :-: |
-| 1. docker |  :white_check_mark: |  | :white_check_mark: |
-| 2. podman | :white_check_mark: |  :white_check_mark: | :white_check_mark: |
-| 3. unionfs* |  |  |  |
-
-*: `unionfs` binary on the host
+To be fair, in many cases the alias could be all you need. But in this particular one, those steps helped replacing docker with podman and extending [demo-multienv](https://github.com/jobcespedes/demo-multienv). Now I could run it in either one of three modes using Ansible :smile:: docker, podman or `unionfs` on the host.
