@@ -11,7 +11,6 @@ pygmentsCodefencesGuessSyntax: true
 footnoteReturnLinkContents: ↩
 enableemoji: true
 googleAnalytics: 'UA-159956456-1'
-author: Job Céspedes Ortiz
 permalinks:
   posts: /:year/:month/:slug/
 params:
@@ -28,14 +27,6 @@ params:
   # socialShare: true
   showRelatedPosts: true
   hideAuthor: true
-  social:
-    - name: Linkedin
-      icon: fab fa-linkedin
-      url: 'https://www.linkedin.com/in/job-céspedes-ortiz-277aa471'
-    - name: Github
-      icon: fab fa-github
-      url: 'https://github.com/jobcespedes'
-
 Author:
   name: Job Céspedes Ortiz
   website: jobcespedes.github.io
