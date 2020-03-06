@@ -1,19 +1,10 @@
 ---
 title: "alias docker=podman"
 slug: "alias-docker-podman"
+author: Job Céspedes Ortiz
 date: 2020-03-02T10:48:50-06:00
-description: "replacing docker with podman when trying to mount a unionfs inside a container"
-keywords:
-  - containers
-  - podman
-  - unionfs
-  - docker
-  - bind-propagation
-  - user namespaces
-authors:
-  - Job Céspedes Ortiz
-# categories: []
-# series: []
+subtitle: "is all it requires?"
+image: ""
 tags:
   - containers
   - podman
@@ -21,9 +12,6 @@ tags:
   - docker
   - bind-propagation
   - user namespaces
-# images: []
-# videos: []
-# audio: []
 draft: true
 ---
 I have heard about [podman](https://podman.io/) (Pod Manager tool) more and more often now. Whether it is that I have come closer to its developing environment or that it has come to mine, I'm not sure. It's both, I guess. I use Ansible a lot for automating baremetal and virtual infrastructure: for its definition, deployment, configuration, operation, among other things. In the recent years, I have being using more and more containers, particularly in the developing stages. And I really like open source, most of its concepts, and many initiatives around it. So, I have being wondering if I should be using mainly podman for containers already. There is, however, this one recurrent question in my head:
