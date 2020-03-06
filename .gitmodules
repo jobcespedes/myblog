@@ -1,8 +1,7 @@
-[submodule "themes/hugo-vitae"]
-	path = themes/hugo-vitae
-	url = https://github.com/datacobra/hugo-vitae.git
-	branch = redesign
 [submodule "public"]
 	path = public
 	url = https://github.com/jobcespedes/jobcespedes.github.io.git
 	branch = master
+[submodule "themes/beautifulhugo"]
+	path = themes/beautifulhugo
+	url = https://github.com/halogenica/beautifulhugo.git
