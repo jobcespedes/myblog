@@ -87,7 +87,7 @@ podman unshare mount | grep ${unionfs}
 ## More than `alias docker=podman`
 In retrospective, replacing docker with podman may require more than `alias docker=podman`. It required me to:
 * **check [documentation](https://github.com/containers/libpod) available**
-* **turn to [community recourses](https://github.com/containers/libpod/issues)**
+* **turn to [community resources](https://github.com/containers/libpod/issues)**
 * **start to really grasp concepts like [_rootless_ and _user namespaces_](https://opensource.com/article/19/2/how-does-rootless-podman-work)**
 * **have fun learning new things**
 
