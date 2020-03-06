@@ -11,6 +11,7 @@ pygmentscodefencesguesssyntax: true
 footnoteReturnLinkContents: ↩
 # enablegitinfo: true
 enableemoji: true
+googleAnalytics: 'UA-159956456-1'
 permalinks:
   posts: /:year/:month/:slug/
 taxonomies:
