@@ -15,8 +15,6 @@ permalinks:
   posts: /:year/:month/:slug/
 params:
   subtitle: "By Job Céspedes Ortiz"
-  mainSections:
-    - posts
   logo: img/me_avatar.png
   favicon: img/me.ico
   dateFormat: 'January 2, 2006'

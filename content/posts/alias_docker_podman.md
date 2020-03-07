@@ -42,8 +42,8 @@ I turned to the community, opening [#5322](https://github.com/containers/libpod/
 >
 > The shared mount is created inside of the rootless mount namespace, you can reach it with podman unshare" -- <cite>@giuseppe. From [Github](https://github.com/containers/libpod/issues/5322#issuecomment-591055081)</cite>
 
-Everywhere in podman documentation, it says it is able to run rootless. And still, I forget that aspect :sweat_smile:. It did not work because:
-- **It should be run as root for it to work**
+Everywhere in podman documentation, it says it is able to run rootless. And still, I forget that aspect :sweat_smile:. In docker, it was running as root. For it to work in podman:
+- **It should be run as root**
 
 However, podman still allows one option for running it rootless. It is related to [_user namespaces_](https://opensource.com/article/18/12/podman-and-user-namespaces) and [_podman unshare_](https://github.com/containers/libpod/blob/master/docs/source/markdown/podman-unshare.1.md).
 - **If rootless, it could be accessed using `podman unshare`**
