@@ -11,7 +11,6 @@ tags:
   - docker
   - ansible
   - IaC
-draft: true
 ---
 Many systems are deployed in a multienvironment context, for example: production, stage, and dev.  These environments often share variables and artifacts. In Ansible, there are different methods to work in this context. For example, [separate directory layout](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html#alternative-directory-layout) and [soft links](https://www.digitalocean.com/community/tutorials/how-to-manage-multistage-environments-with-ansible). However, it can end with a considerable amount of data and duplicate files between environments, exposing variables to all hosts or adding much more complexity to playbooks.
 

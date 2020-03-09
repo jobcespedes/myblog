@@ -1,5 +1,5 @@
 theme: beautifulhugo
-baseURL: 'https://jobcespedes.github.io/'
+baseURL: 'https://jobcespedes.dev/'
 defaultContentLanguage: en
 copyright: © 2020 Job Céspedes Ortiz
 title: "My Dev Blog"
@@ -27,7 +27,6 @@ params:
   hideAuthor: true
 Author:
   name: Job Céspedes Ortiz
-  website: jobcespedes.github.io
   github: jobcespedes
   gitlab: jobcespedes
-  linkedin: job-céspedes-ortiz-277aa471
+  linkedin: jobcespedes
