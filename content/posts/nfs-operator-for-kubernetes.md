@@ -11,6 +11,8 @@ tags:
   - rook
   - nfs
   - autoexpansion
+  - m4e-operator
+  - krestomatio
 ---
 > The Kubernetes Operator in this project is in **Alpha** version. **Use at your own risk**
 
