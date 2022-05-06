@@ -154,3 +154,9 @@ To verify after converge, run `molecule verify`. After you are done testing, rem
 Ansible and Molecule help you test and verify an automated deployment. It could be on your machine, CI/CD or any any other environment. You have the option to do a full test sequence or specific sets. It enables incremental development of your automated configuration. The best part for me, it gives me a safe environment to debug, test and learn. I just need to run `molecule converge` and there I have it.
 
 Molecule has more to it than what has been covered here. [Check out its docs](https://molecule.readthedocs.io/en/latest/getting-started.html) to learn more. If you have read this far, I hope you have been able to simple test a complex scenario and safely screwed things up. :wave:
+
+---
+## Additional Resources
+The following resources are useful for further learning basic and advanced Ansible topics:
+- [Working with Ansible Playbooks – Tips & Tricks with Examples](https://spacelift.io/blog/ansible-playbooks)
+- [Multiple Environments in Ansible ](https://dev.to/jobcespedes/multiple-environments-in-ansible-4c6n)
