@@ -14,94 +14,95 @@ tags:
   - m4e-operator
   - krestomatio
 ---
-[NFS Operator](https://github.com/krestomatio/nfs-operator) adds three important features for a NFS in Kubernetes. It allows setting NFS export [ownership/permissions](#ownershippermissions), enables PVC [autoexpansion](#autoexpansion) and reduces the number of manual [resource definitions](#storageclass). It is based on [Rook NFS v1.7](https://github.com/rook/nfs/blob/release-1.7/Documentation/README.md) and [Ansible Operator SDK](https://sdk.operatorframework.io/docs/building-operators/ansible/tutorial/). Thus, the new features are in addition to those in Rook NFS. The extra functions it adds on top of Rook NFS are:
+[NFS Operator](https://github.com/krestomatio/nfs-operator) creates NFSv4 ganesha servers in Kubernetes, allowing to set [ownership/permissions](#ownershippermissions) of their NFS export directory; to [autoexpand their PVC](#autoexpansion); and to enable [RWX storage](#rwx-storage) from them:
 
-1. It is able to set ownership and permissions for the (NFS) Server export
-2. It is able to autoexpand/adjust the value of (NFS) Server PVC storage size
-3. It automatically creates a StorageClass with a (NFS) Server
+1. It can set ownership and permissions for [export parent directory](#ownershippermissions) of the (NFS) Ganesha server.
+2. It is able to [expand/adjust](#autoexpansion) the PVC size of the (NFS) Ganesha server automatically, as it grows.
+3. It could autogenerate an StorageClass that uses the (NFS) Ganesha server for [RWX storage](#rwx-storage).
 
-There are some restrictions compared to Rook NFS:
-* Only one export/PVC per (NFS) Server
+>It is based on [Ansible Operator SDK](https://sdk.operatorframework.io/docs/building-operators/ansible/tutorial/).
 
-## Prerequisites
-Prerequisites are the same as [Rook NFS](https://github.com/rook/nfs/blob/release-1.7/Documentation/quickstart.md#prerequisites). Therefore, **Rook NFS v1.7 must be installed**.
+>This operator is part of the Kubernetes operators and tools developed by [Krestomatio, a managed service for Moodle™ instances](https://krestomatio.com)
+
+## Dependencies
+> A previous version had NFS Rook as a dependency. However, it is no longer the case
+* [NFS CSI](https://github.com/kubernetes-csi/csi-driver-nfs) driver `version >= v3.0.0` for dynamic provisioning
 
 ## Install
 
 > The Kubernetes Operator in this project is in **Alpha** version. **Use at your own risk**
 
-Follow the next steps to install the NFS Operator as well as Rook NFS v1.7 operator. Notice that CRs should be installed in the namesapace **rook-nfs**. It is the default namespace for (NFS) Servers in Rook NFS Operator installation:
+Follow the next steps to install the NFS Operator:
 ```bash
-# install rook nfs operator v1.7
-make deploy-rook
-
 # install this operator
 make deploy
 
-# create a nfs server cr/object from sample
-kubectl -n rook-nfs apply -f config/samples/nfs_v1alpha1_server.yaml
+# create a nfs ganesha server cr/object from sample
+kubectl apply -f config/samples/nfs_v1alpha1_ganesha.yaml
 
 # follow/check nfs operator logs
 kubectl -n nfs-operator-system logs -l control-plane=controller-manager -c manager  -f
 
-# follow sample nfs server cr/object status
-kubectl -n rook-nfs get Server server-sample -o yaml -w
+# follow sample nfs ganesha server cr/object status
+kubectl get ganesha ganesha-sample -o yaml -w
 ```
 
 ## Uninstall
 Follow the next steps to uninstall it.
 ```bash
-# delete the nfs server cr/object
+# delete the nfs ganesha server cr/object
 # CAUTION with data loss
-kubectl -n rook-nfs delete -f config/samples/nfs_v1alpha1_server.yaml
+kubectl delete -f config/samples/nfs_v1alpha1_ganesha.yaml
 
 # uninstall this operator
 make undeploy
-
-# uninstall rook nfs operator v1.7
-make undeploy-rook
 ```
 
 ## Configuration Options
-For a CRD sample, see: [sample](config/samples/nfs_v1alpha1_server.yaml)
+For a Custom Resource (CR) sample of a (NFS) Ganesha server, see: [sample](config/samples/nfs_v1alpha1_ganesha.yaml)
 
 ### Ownership/Permissions
-To set export folder ownership, set _server_export_userid_ and _server_export_groupid_. For export folder permissions, set _server_export_permissions_. For instance:
+To set export folder ownership, set _ganeshaExportUserid_ and _ganeshaExportGroupid_. For export folder permissions, set _ganeshaExportMode_. For instance:
 ```yaml
 spec:
   # Ownership/permissions
   ## Set export folder userid to 48
-  server_export_userid: 48
+  ganeshaExportUserid: 48
   ## Set export folder groupid to 0
-  server_export_groupid: 0
+  ganeshaExportGroupid: 0
   ## Set export folder permissions to 775
-  server_export_permissions: 755
+  ganeshaExportMode: 755
 ```
 
 ### Autoexpansion
-When autoexpansion is enabled (_server_pvc_autoexpansion_), if storage available is less than 20% or below _server_pvc_autoexpansion_gib_, PVC storage size is auto incremented according to _server_pvc_autoexpansion_gib_. However, it will not be increment beyond _server_pvc_autoexpansion_cap_gib_ (see related [function](https://github.com/krestomatio/ansible-collection-k8s/blob/c8768df3d9af4ddf7258c31d37cc3f54cc5a4cf6/plugins/module_utils/storage.py#L62)). The following is a config example for it:
+When autoexpansion is enabled (_ganeshaPvcDataAutoexpansion_), if storage available is less than 20% or below _ganeshaPvcDataAutoexpansionIncrementGib_, PVC storage size is auto incremented according to _ganeshaPvcDataAutoexpansionIncrementGib_. However, it will not be increment beyond _ganeshaPvcDataAutoexpansionCapGib_ (see related [function](https://github.com/krestomatio/ansible-collection-k8s/blob/c8768df3d9af4ddf7258c31d37cc3f54cc5a4cf6/plugins/module_utils/storage.py#L62)). The following is a config example for it:
 ```yaml
 spec:
   # Autoexpansion
   ## Enable autoexpansion
-  server_pvc_autoexpansion: true
+  ganeshaPvcDataAutoexpansion: true
   ## Every time autoexpansion is required, increment 5 GiB
-  server_pvc_autoexpansion_gib: 5
-  ### But no more than 250 GiB
-  server_pvc_autoexpansion_cap_gib: 250
+  ganeshaPvcDataAutoexpansionIncrementGib: 5
+  ### But no more than 25 GiB
+  ganeshaPvcDataAutoexpansionCapGib: 25
 ```
 
 #### Please, you should take into consideration the following:
 * Not all types of storage are compatible. For instance, hostpath is not.
-* Kubernetes cluster and (NFS) Server PVC must support expansion of volumes
-* In older K8s versions, (NFS) Server pod may be restart when autoexpansion is enabled if Kubernetes feature gate _ExpandInUsePersistentVolumes_ is false. See: Kubernetes [Feature Gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/)
+* Kubernetes cluster and PVC must support expansion of volumes
+* In older K8s versions, (NFS) Ganesha server pod may be restart when autoexpansion is enabled if Kubernetes feature gate _ExpandInUsePersistentVolumes_ is false. See: Kubernetes [Feature Gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/)
 
-### StorageClass
-A class is automatically created with suffix **-nfs-sc**. If a CR is created with the name: [**server-sample**](config/samples/nfs_v1alpha1_server.yaml), a storage class named **server-sample-nfs-sc** is also created and showed in the CR status.
+### RWX Storage
+`StorageClass` (SC) autocreation could be specified in the (NFS) Ganesha server CR. The default is to generate one SC.
+
+SC default name is defined using (NFS) Ganesha server CR name + suffix **-nfs-sc**. For example: if a CR is created with the name: [**ganesha-sample**](config/samples/nfs_v1alpha1_ganesha.yaml), a storage class named **ganesha-sample-sc** is also created and showed in the CR status.
 
 ### Advanced Options
-For advanced configuration options available for CR spec, take a look at [the options](https://github.com/krestomatio/ansible-collection-k8s/blob/master/roles/v1alpha1/nfs/server/defaults/main/server.yml)
+For advanced configuration options available for CR spec, take a look at [the options](https://github.com/krestomatio/ansible-collection-k8s/blob/master/roles/v1alpha1/nfs/ganesha/defaults/main/ganesha.yml)
 
 ## Want to contribute?
 * Use [Github issues](https://github.com/krestomatio/nfs-operator/issues) to report bugs, send enhancement, new feature requests and questions
 * Join [our telegram group](https://t.me/nfs_operator)
+
+## [About Krestomatio](https://krestomatio.com/about)
+[Krestomatio is a managed service for Moodle™ e-learning platforms](https://krestomatio.com/). It allows you to have open-source instances managed by a service optimized for Moodle™, complete with an additional plugin pack and customization options.
