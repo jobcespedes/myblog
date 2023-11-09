@@ -11,7 +11,7 @@ tags:
   - containers
   - docker
   - podman
-  - m4e-operator
+  - moodle-operator
   - krestomatio
 ---
 Now that [Rocky Linux is GA](https://rockylinux.org/news/rocky-linux-8-4-ga-release/), here is a [repo](https://github.com/krestomatio/container_builder/tree/master/rocky8-minimal) for a [minimal container image for Rocky Linux](https://quay.io/krestomatio/rocky8-minimal/). Its size is around ~37 MB (compressed). It is based on [Fedora Minimal](https://registry.fedoraproject.org/repo/fedora-minimal/tags/) and [UBI8 minimal](https://catalog.redhat.com/software/containers/ubi8/ubi-minimal/5c359a62bed8bd75a2c3fba8) from Red Hat. You can [download it from Quay](https://quay.io/krestomatio/rocky8-minimal/) or build it, following the instructions in the [repo](https://github.com/krestomatio/container_builder/tree/master/rocky8-minimal). You could also generate a new rootfs yourself before building the image, again, following the short instructions in the [repo](https://github.com/krestomatio/container_builder/tree/master/rocky8-minimal).

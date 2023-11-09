@@ -9,7 +9,7 @@ tags:
   - redis
   - kubernetes
   - containers
-  - m4e-operator
+  - moodle-operator
   - krestomatio
 ---
 [KeyDB](https://keydb.dev/) is a multithreading, drop-in alternative to Redis. The [Keydb-operator](https://github.com/krestomatio/keydb-operator) can easily create either a standalone instance (1 replica) or a multimaster setup (3 replicas) of the [KeyDB in-memory database](https://github.com/EQ-Alpha/KeyDB). When KeyDB is in [multimaster mode](https://docs.keydb.dev/docs/multi-master/), it is possible to have more than one master, allowing for read/write operations across all of them. This capability enhances high availability and fault tolerance.
