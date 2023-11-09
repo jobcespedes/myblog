@@ -1,0 +1,37 @@
+name: Build and Deploy Hugo Site
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.94.1'
+          extended: true
+
+      - name: Build Hugo Site
+        run: hugo --minify
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.TOKEN }}
+          external_repository: jobcespedes/jobcespedes.github.io
+          publish_dir: ./public
+          #   keep_files: true
+          user_name: jobcespedes
+          user_email: jobcespedes@gmail.com
+          publish_branch: master
+        #   cname: example.com
