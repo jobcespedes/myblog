@@ -2,7 +2,7 @@
 title: "A Kubernetes NFS Operator"
 author: Job Céspedes Ortiz
 date: 2021-07-02T13:55:42-06:00
-subtitle: "with extra functionality on top of Rook NFS"
+subtitle: "with extra functionality"
 image: ""
 tags:
   - kubernetes
