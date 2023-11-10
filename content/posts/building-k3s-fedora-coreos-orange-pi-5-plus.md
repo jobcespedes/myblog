@@ -34,15 +34,14 @@ The main reasons behind selecting FCOS as the Operating System (OS) were:
 ## Warning
 There are a couple of things you should be aware of:
 - This is a laboratory environment.
-- Ensure that you use the correct official image and URL for your device version. For instance, the opi5+ version differs from the opi5 version.
+- Ensure that you use the correct official images and URL for your device model, where aplicable. For instance, the opi5+ images and urls differs from the opi5 ones.
 - Some steps involve commands that will erase data.
 
 ## Assumptions
 The following assumptions have been made:
 
 - Device is Orange Pi 5+ version.
-- Availability of another Fedora-based laptop for preparations.
-- The SD Card in the laptop/PC is mounted in `/dev/sda`.
+- There is another Fedora-based laptop/PC for preparations.
 
 ## Preparations
 ###  Items

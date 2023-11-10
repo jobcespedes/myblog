@@ -9,9 +9,12 @@ tags:
   - k3s
   - kubernetes
   - orangepi5
+  - ansible
   - john-1:4
 ---
-In this blog post, I'll be sharing my practical journey of building a K3s Cluster on the Orange Pi 5 Plus (opi5+) using Armbian as the Operating System (OS). The post is meant as a straightforward guide for anyone looking to replicate the process. I hope it proves helpful for your own setup.
+In this blog post, I'll be sharing my practical journey of building a K3s Cluster on the Orange Pi 5 Plus (opi5+) using Armbian as the Operating System (OS) and Ansible. The post is meant as a straightforward guide for anyone looking to replicate the process. I hope it proves helpful for your own setup.
+
+>Please consider that in some sections, there are references to external guides containing the respective steps.
 
 ## Why Armbian?
 After [my failed attempt using Fedora CoreOS](/2023/11/building-a-k3s-cluster-with-fedora-coreos-on-orange-pi-5-plus), Armbian + K3s was one of the options I considered. Among the reasons behind selecting Armbian as the OS, there are:
@@ -31,15 +34,13 @@ After [my failed attempt using Fedora CoreOS](/2023/11/building-a-k3s-cluster-wi
 ## Warning
 There are a couple of things you should be aware of:
 - This is a laboratory environment.
-- Ensure that you use the correct official image and URL for your device version. For instance, the opi5+ version differs from the opi5 version.
 - Some steps involve commands that will erase data.
 
 ## Assumptions
 The following assumptions have been made:
 
-- Devices are Orange Pi 5+ version.
-- Availability of another system for preparations.
-- The SD Card in the laptop/PC is mounted in `/dev/sda`.
+- Device is Orange Pi 5+ version.
+- There is another laptop/PC for preparations.
 
 ## Preparations
 ###  Items
@@ -59,28 +60,35 @@ For upgrading and connecting to a Linux storage server, utilizing the aforementi
 
 ## Install Armbian
 To install Armbian, follow [Armbian Quickstart](https://docs.armbian.com/User-Guide_Getting-Started/). The steps include:
-1. Download Armbian image for opi5+
-2. Install Armbian image in the SD Card
-3. Boot from SD card, do basic config, and install image in opi5+ eMMC with: `armbian-install`
-4. Poweroff
-5. Remove SD card
-6. Boot into eMMC and Armbian
+1. Downloading Armbian image for opi5+
+2. Installing Armbian image in the SD Card
+3. Booting from SD card, do basic config, and install image in opi5+ eMMC with: `armbian-install`
+4. Powering off
+5. Removing SD card
+6. Booting into eMMC and Armbian
 
 ### Other Basic Config
-While opi5+ is off, remove the SD card. Boot into eMMC and Armbian to apply some basic config before installing k3s:
+> Remove the SD card
 
-- Change root password using `openssl rand -base64 12`
-- Change user password using `openssl rand -base64 12`
-- Upgrade OS and packages
-- Allow sudo without password
-- Allow auth using SSH keys
-- Customize /etc/hosts
-- Create network teaming/bonding
+Boot into eMMC and configure basic settings before proceeding further. Access using SSH keys without asking for a password is required for [installing K3s using ansible](#install-k3s). The other steps are optional:
 
-Below are the commands to perform the steps above. Change variable values according to your context. Replicate them in each of the other devices. Remember you need root access:
+1. Get root access
+2. Change root password
+3. Change user password
+4. Upgrade OS and packages
+5. Allow sudo without password
+6. Allow auth using SSH keys
+7. Customize /etc/hosts
+8. Create network teaming/bonding
+
+Below are the commands to perform the steps listed above. Change variable values according to your context. Replicate them in each of the other devices. Remember you need root access:
 ```bash
 ## as root.
 # sudo bash
+
+## change passwords
+# passwd root
+# passwd ${opi_hostname}
 
 ## upgrade pkgs
 apt update
@@ -151,10 +159,15 @@ nmcli connection delete "Wired connection 2"
 ```
 
 ## Install K3s
-For installing K3s, perform the following steps on a system other than your Opi5+ devices:
+Now you are ready to install K3s, using Ansible and [a K3s role](https://github.com/PyratLabs/ansible-role-k3s). Perform the following steps on a system other than your Opi5+ devices:
 
-1. Install Ansible and the [K3s role](https://github.com/PyratLabs/ansible-role-k3s).
-2. Install the [Highly Available (HA) K3s Cluster with embedded etcd](https://github.com/PyratLabs/ansible-role-k3s/blob/main/documentation/quickstart-ha-cluster.md).
+1. Install [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) and the [K3s role](https://github.com/PyratLabs/ansible-role-k3s).
+    - For [installing Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html), you could run `pip install ansible`
+    - For installing the [K3s role](https://github.com/PyratLabs/ansible-role-k3s), you could run `ansible-galaxy role install xanmanning.k3s`
+2. Install a Highly Available (HA) K3s Cluster with embedded etcd, following [these steps](https://github.com/PyratLabs/ansible-role-k3s/blob/main/documentation/quickstart-ha-cluster.md). They include:
+    - Creating an inventory with your opi5+ devices
+    - Creating a playbook, using that inventory and [the K3s role](https://github.com/PyratLabs/ansible-role-k3s)
+    - Running the playbook
 
 ## Enjoy!
-To wrap it up, building the K3s Cluster on the Orange Pi 5 Plus was a hands-on experience. Now, I have another Kubernetes cluster to develop and test [Moodle™ instances managed by Krestomatio](https://krestomatio.com/) [operators for Kubernetes](https://github.com/krestomatio/). I hope this guide makes it easy for you to do the same. Good luck with your K3s Cluster setup on the Orange Pi 5 Plus, and I hope you too have fun!
+To wrap it up, building the K3s Cluster on the Orange Pi 5 Plus was a hands-on experience. Now I will use it to develop and test [Moodle™ instances managed by Krestomatio](https://krestomatio.com/) [operators for Kubernetes](https://github.com/krestomatio/). I hope this guide makes it easy for you to do the same. Good luck with your K3s Cluster setup on the Orange Pi 5 Plus, and I hope you too have fun!
