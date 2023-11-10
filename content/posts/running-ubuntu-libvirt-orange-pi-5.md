@@ -7,9 +7,9 @@ image: ""
 tags:
   - ubuntu
   - libvirt
-  - orange-pi-5
+  - orangepi5
   - virtualization
-  - krestomatio
+  - matthew-11:27
 ---
 In this guide, we'll walk through the steps to install libvirt on the Single Board Computer (SBC) Orange Pi 5 (opi5) for running virtual machines (VMs). I've compiled these steps after dealing with the opi5 instructions, searching on the internet and communities, and my own experience. I hope this guide helps someone accomplish this task more quickly than I did initially.
 

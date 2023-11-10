@@ -13,6 +13,7 @@ tags:
   - containers
   - docker
   - IaC
+  - psalm-2:7
 ---
 **Is there something easy when deploying and configuring the database layer?**
 

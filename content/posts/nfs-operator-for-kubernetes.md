@@ -13,6 +13,7 @@ tags:
   - autoexpansion
   - moodle-operator
   - krestomatio
+  - romans-12:2
 ---
 [NFS Operator](https://github.com/krestomatio/nfs-operator) creates NFSv4 ganesha servers in Kubernetes, allowing to set [ownership/permissions](#ownershippermissions) of their NFS export directory; to [autoexpand their PVC](#autoexpansion); and to enable [RWX storage](#rwx-storage) from them:
 
