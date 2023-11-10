@@ -117,7 +117,8 @@ ssh-rsa ${opi_ssh_authorized_key}
 _EOF
 chmod 0700 -R /home/${opi_username}/.ssh
 chown ${opi_username}:${opi_username} -R /home/${opi_username}/.ssh
-sed -i "s@#PasswordAuthentication.*@PasswordAuthentication no@" /etc/ssh/sshd_config
+sed -i "s@#PasswordAuthentication.*@PasswordAuthentication no@" \
+  /etc/ssh/sshd_config
 systemctl restart ssh
 
 ## /etc/hosts
@@ -149,10 +150,17 @@ _EOF
 
 # add bond interface
 # this could cause disconection
-nmcli connection add type bond con-name bond0 ifname bond0 bond.options "mode=balance-alb,miimon=1000" mtu 9000 ipv4.addresses "${opi_cidr}" ipv4.gateway "${opi_gw}" ipv4.dns "${opi_dns}" ipv4.dns-search "${opi_domain}" ipv4.method manual bond.options "mode=balance-alb,miimon=1000" mtu 9000
+nmcli connection add type bond con-name bond0 ifname bond0 \
+  bond.options "mode=balance-alb,miimon=1000" \
+  ipv4.addresses "${opi_cidr}" ipv4.gateway "${opi_gw}" \
+  ipv4.dns "${opi_dns}" ipv4.dns-search "${opi_domain}" \
+  ipv4.method manual bond.options "mode=balance-alb,miimon=1000" \
+  mtu 9000
 # add current devices
-nmcli connection add type ethernet slave-type bond con-name bond0-port1 ifname enP3p49s0 master bond0 mtu 9000
-nmcli connection add type ethernet slave-type bond con-name bond0-port2 ifname enP4p65s0 master bond0 mtu 9000
+nmcli connection add type ethernet slave-type bond \
+  con-name bond0-port1 ifname enP3p49s0 master bond0 mtu 9000
+nmcli connection add type ethernet slave-type bond \
+  con-name bond0-port2 ifname enP4p65s0 master bond0 mtu 9000
 # delete old connections
 nmcli connection delete "Wired connection 1"
 nmcli connection delete "Wired connection 2"

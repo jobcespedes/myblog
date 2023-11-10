@@ -76,10 +76,10 @@ rm -f "${PWD}/${FCOS_IMG}"
 truncate -s 3GB "${PWD}/${FCOS_IMG}"
 sudo losetup -f -P "${PWD}/${FCOS_IMG}"
 sudo $CONTAINER_BUILDER run --pull=always --privileged --rm \
-    -v /dev:/dev -v /run/udev:/run/udev -v $IGN_FILE:$IGN_FILE \
-    quay.io/coreos/coreos-installer:release \
-    install --firstboot-args=console=tty0 \
-    -p "metal" -a aarch64 -s $STREAM -i $IGN_FILE /dev/loop0
+  -v /dev:/dev -v /run/udev:/run/udev -v $IGN_FILE:$IGN_FILE \
+  quay.io/coreos/coreos-installer:release \
+  install --firstboot-args=console=tty0 \
+  -p "metal" -a aarch64 -s $STREAM -i $IGN_FILE /dev/loop0
 sudo sync
 sudo losetup -D
 ```

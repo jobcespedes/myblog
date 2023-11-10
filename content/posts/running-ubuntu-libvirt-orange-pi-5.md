@@ -18,9 +18,9 @@ The first step is to install an Operating System (OS) on the opi5. You have seve
 
 1. [Install Ubuntu](https://github.com/Joshua-Riek/ubuntu-rockchip#installation) on the NVMe, following the [opi5 official docs for burning it to the SSD](http://www.orangepi.org/).
 2. Apply basic configurations, including:
-   - Network
-   - Locale
-   - Keyboard
+    - Network
+    - Locale
+    - Keyboard
 3. Perform a package update/upgrade.
 
 ## Installing Libvirt
@@ -32,7 +32,10 @@ To install libvirt, you will need to install some other related packages and add
 ## `qemu-efi-arm` for arm 32bits efi
 ## `u-boot-qemu` if planning to use uboot
 # install pkgs in ubuntu 22.04
-sudo apt install --no-install-recommends libvirt-daemon libvirt-daemon-system libvirt-clients qemu-kvm qemu-system-arm qemu-utils qemu-efi-aarch64 qemu-efi-arm arm-trusted-firmware seabios bridge-utils virtinst dnsmasq-base ipxe-qemu
+sudo apt install --no-install-recommends libvirt-daemon \
+  libvirt-daemon-system libvirt-clients qemu-kvm qemu-system-arm \
+  qemu-utils qemu-efi-aarch64 qemu-efi-arm arm-trusted-firmware \
+  seabios bridge-utils virtinst dnsmasq-base ipxe-qemu
 
 # add user to libvirt group
 sudo adduser $USER libvirt
@@ -40,32 +43,36 @@ newgrp libvirt
 export LIBVIRT_DEFAULT_URI=qemu:///system
 
 # workaround
-# set `60-edk2-aarch64.json` as the default uefi configuration using a symlink to place the descritor file first
+# set `60-edk2-aarch64.json` as the default uefi configuration
+# using a symlink to place the descritor file first
 # https://bugzilla.redhat.com/show_bug.cgi?id=1564270
-sudo ln -s  /usr/share/qemu/firmware/60-edk2-aarch64.json  /usr/share/qemu/firmware/00-edk2-aarch64.json
+sudo ln -s  /usr/share/qemu/firmware/60-edk2-aarch64.json \
+  /usr/share/qemu/firmware/00-edk2-aarch64.json
 
 # test cirros VM
 ## download cirros image
 sudo wget http://download.cirros-cloud.net/0.5.2/cirros-0.5.2-aarch64-disk.img \
-    -P /var/lib/libvirt/images
+  -P /var/lib/libvirt/images
 ## create root qcow2 from image
-sudo qemu-img create -b /var/lib/libvirt/images/cirros-0.5.2-aarch64-disk.img -F qcow2 -f qcow2 \
-    /var/lib/libvirt/images/test.qcow2
+sudo qemu-img create -b /var/lib/libvirt/images/cirros-0.5.2-aarch64-disk.img \
+  -F qcow2 -f qcow2 /var/lib/libvirt/images/test.qcow2
 ## autostart default net
 virsh net-autostart --network default
 virsh net-start default
 ## install test VM in ubuntu host
 virt-install -n test --memory 1024 --arch aarch64 --vcpus 1 \
-    --disk /var/lib/libvirt/images/test.qcow2,device=disk,bus=virtio \
-    --os-variant=cirros0.5.2 \
-    --nographic \
-    --boot loader=/usr/share/AAVMF/AAVMF_CODE.fd,loader.readonly=yes,loader.type=pflash
+  --disk /var/lib/libvirt/images/test.qcow2,device=disk,bus=virtio \
+  --os-variant=cirros0.5.2 \
+  --nographic \
+  --boot loader=/usr/share/AAVMF/AAVMF_CODE.fd,loader.readonly=yes,loader.type=pflash
 ```
 
 ## On Debian?
 I attempted to install libvirt on a Debian image on the opi5, but I was not successful. I subsequently switched to Ubuntu. Here are the steps that I used to install libvirt on Debian, in case anyone wants to explore that route.
 ```bash
-sudo apt install --no-install-recommends qemu-system-arm libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon qemu-utils qemu-efi-aarch64
+sudo apt install --no-install-recommends qemu-system-arm libvirt-clients \
+  libvirt-daemon-system bridge-utils virtinst libvirt-daemon qemu-utils \
+  qemu-efi-aarch64
 ```
 
 ## Have Fun
