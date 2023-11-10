@@ -1,7 +1,7 @@
 theme: beautifulhugo
 baseURL: 'https://jobcespedes.dev/'
 defaultContentLanguage: en
-copyright: © 2020 Job Céspedes Ortiz
+copyright: © 2023 Job Céspedes Ortiz
 title: "My Dev Blog"
 metaDataFormat: "yaml"
 pygmentsStyle: "trac"
@@ -10,7 +10,7 @@ pygmentsCodeFences: true
 pygmentsCodefencesGuessSyntax: true
 footnoteReturnLinkContents: ↩
 enableemoji: true
-googleAnalytics: 'UA-159956456-1'
+googleAnalytics: 'G-42FQ4K4QWP'
 permalinks:
   posts: /:year/:month/:slug/
 params:
