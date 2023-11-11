@@ -3,7 +3,7 @@ title: "Building a K3s Cluster with Armbian on Orange Pi 5 Plus"
 author: Job Céspedes Ortiz
 date: 2023-11-09T12:00:00-06:00
 subtitle: "A Step-by-Step Guide"
-image: "img/opi5-cluster-1.png"
+image: "img/opi5-cluster-1.jpg"
 tags:
   - armbian
   - k3s
