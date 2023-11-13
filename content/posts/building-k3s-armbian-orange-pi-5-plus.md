@@ -54,7 +54,7 @@ The items used for this task are:
 - 1x [HORACO 8 Port 2.5G Ethernet Switch](https://aliexpress.com/item/1005005118650350.html)
 
 #### Other items
-For upgrading and connecting to a Linux storage server, utilizing the aforementioned switch, the following items were acquired:
+Two additional items were acquired, specifically for a Linux storage server and not intended for the K3s cluster. Below are the details of these items in case they serve as a reference. Kindly note that they are not meant or required for the K3s Cluster:
 - 1x [25G SFP28 SFP+ DAC Cable - 25GBASE-CR SFP28 to SFP28 Passive Direct Attach Copper](https://www.aliexpress.com/item/1005002276380808.html).
 - 1x ConnectX-4 Lx EN CX4121A-ACAT 2-Port 10/25GbE SFP28 PCI-E
 
