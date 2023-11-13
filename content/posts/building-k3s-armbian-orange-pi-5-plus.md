@@ -12,7 +12,7 @@ tags:
   - ansible
   - john-1:4
 ---
-In this blog post, I'll be sharing hands-on experience in building a K3s Cluster on the Orange Pi 5 Plus (opi5+) using Armbian as the Operating System (OS) and Ansible. The post is meant as a straightforward guide for anyone looking to replicate the process. I hope it proves helpful for your own setup.
+In this blog post, I'll be my sharing hands-on experience in building a K3s Cluster on the Orange Pi 5 Plus (opi5+) using Armbian as the Operating System (OS) and Ansible. The post is meant as a straightforward guide for anyone looking to replicate the process. I hope it proves helpful for your own setup.
 
 >Please consider that in some sections, there are references to external guides containing the respective steps.
 
