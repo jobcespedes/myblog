@@ -124,10 +124,11 @@ sudo sync
 ## Result
 >Remember to power off and remove the SD card. Then test booting from FCOS image in eMMC on the opi5+.
 
-The generic FCOS image does not work out of the box. It throws the error `Timed out wating for device` for boot and root devices and then enters emergency mode. Attempts to run using F39 and F40 were made, with the same result though.
+The generic FCOS image does not work out of the box. It throws the error `Timed out wating for device` for boot and root devices and then enters emergency mode. Attempts to run using F39 and F40 were made, with the same result though. I suspect that the eMMC is not being recognized. I did not proceed beyond this point. Instead, I began considering alternatives to achieve my goal of building a K3s cluster.
 
 ## Alternatives
-After this result, there are three alternatives I am considering to build a K3s Cluster using opi5+ devices. Those are:
+After this result, there are at least four (4) alternatives I am considering to build a K3s Cluster using opi5+ devices. Those are:
 1. Use official or third party images + K3s
 2. Use [Ubuntu + Libvirt](https://github.com/Joshua-Riek/ubuntu-rockchip#installation) + Fedora CoreOS VM + K3s
 3. Build a custom Fedora CoreOS, with [Orange Pi linux Kernel](https://github.com/orangepi-xunlong/linux-orangepi) + K3s
+4. Wait for full [RK3588 Mainline Kernel support](https://gitlab.collabora.com/hardware-enablement/rockchip-3588/notes-for-rockchip-3588/-/blob/main/mainline-status.md)
