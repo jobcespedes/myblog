@@ -58,7 +58,7 @@ For the SD card:
 ### USB Drive
 In the USB drive:
 - Copy [EDK2 latest release](https://github.com/edk2-porting/edk2-rk3588/releases), naming it `edk2-firmware.img`
-- Copy [FCOS image](#fcos-image), generate in the step below, naming it `fcos.img`
+- Copy [FCOS image](#fcos-image), generate it with the step below, naming it `fcos.img`
 
 ### FCOS image
 To prepare the FCOS image:
