@@ -5,6 +5,7 @@ author: Job Céspedes Ortiz
 date: 2020-03-02T10:48:50-06:00
 subtitle: "all it requires?"
 image: ""
+canonicalURL: "https://getdevops.pro/blog/alias-docker-podman/"
 tags:
   - containers
   - podman

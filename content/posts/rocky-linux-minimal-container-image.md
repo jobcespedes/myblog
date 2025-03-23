@@ -4,6 +4,7 @@ author: Job Céspedes Ortiz
 date: 2021-06-25T18:55:42-06:00
 subtitle: "similar to UBI8, Fedora minimal"
 image: ""
+canonicalURL: "https://getdevops.pro/blog/rocky-linux-minimal-container-image/"
 tags:
   - centos
   - rocky

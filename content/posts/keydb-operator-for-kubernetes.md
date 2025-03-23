@@ -4,6 +4,7 @@ author: Job Céspedes Ortiz
 date: 2022-01-22T23:00:00-06:00
 subtitle: "for Kubernetes"
 image: ""
+canonicalURL: "https://getdevops.pro/blog/keydb-operator-for-kubernetes/"
 tags:
   - keydb
   - redis

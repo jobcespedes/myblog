@@ -4,6 +4,7 @@ author: Job Céspedes Ortiz
 date: 2020-05-21T18:14:42-06:00
 subtitle: "using Ansible and Molecule"
 image: ""
+canonicalURL: "https://getdevops.pro/blog/pg_cluster-ansible-molecule/"
 tags:
   - database
   - postgres

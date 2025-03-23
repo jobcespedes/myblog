@@ -4,6 +4,7 @@ author: Job Céspedes Ortiz
 date: 2020-02-27T14:14:42-06:00
 subtitle: "with little file and data duplication"
 image: ""
+canonicalURL: "https://getdevops.pro/blog/multiple-environments-ansible/"
 tags:
   - containers
   - podman

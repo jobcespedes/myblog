@@ -4,6 +4,7 @@ author: Job Céspedes Ortiz
 date: 2023-11-09T11:00:00-06:00
 subtitle: "Lessons from My Unsuccessful Attempt"
 image: ""
+canonicalURL: "https://getdevops.pro/blog/building-k3s-fedora-coreos-orange-pi-5-plus/"
 tags:
   - fedora
   - coreos

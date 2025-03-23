@@ -4,6 +4,7 @@ author: Job Céspedes Ortiz
 date: 2023-11-09T09:00:00-06:00
 subtitle: "with Libvirt and Ubuntu"
 image: ""
+canonicalURL: "https://getdevops.pro/blog/running-ubuntu-libvirt-orange-pi-5/"
 tags:
   - ubuntu
   - libvirt

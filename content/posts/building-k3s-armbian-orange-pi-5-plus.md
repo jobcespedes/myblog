@@ -4,6 +4,7 @@ author: Job Céspedes Ortiz
 date: 2023-11-09T12:00:00-06:00
 subtitle: "A Step-by-Step Guide"
 image: "img/opi5-cluster-1.jpg"
+canonicalURL: "https://getdevops.pro/blog/building-k3s-armbian-orange-pi-5-plus/"
 tags:
   - armbian
   - k3s
